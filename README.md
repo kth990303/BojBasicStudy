@@ -11,6 +11,6 @@
 5. `merged`일 경우, 다른 과제를 진행합니다.
 
 ### Git branch Protection Rule
-1. kth990303:main 브랜치에는 push가 불가능합니다. PR을 보내주고 코드리뷰어들의 `approve`로 승인을 받아야 합니다.
+1. `kth990303:main` 브랜치에는 push가 불가능합니다. PR을 보내주고 코드리뷰어들의 `approve`로 승인을 받으면 `merge`로 병합됩니다.
 2. 하나의 PR에는 최소 2개 이상의 `approve`가 있어야 합니다.
 3. 지정된 코드리뷰어의 review는 반드시 받아야 합니다.
