@@ -7,7 +7,6 @@ def dfs(now,total):
     if edge[now][i] and not visited[i]:
       visited[i] = True
       maxLength = max(maxLength,dfs(i,total+edge[now][i]))
-      visited[i] = False
   return maxLength
 
 N = int(input())
