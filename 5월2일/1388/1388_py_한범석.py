@@ -1,10 +1,10 @@
-def horizontal(x, y, maxX):
+def horizontal(x, y):
   for i in range(x,maxX):
     if tiles[y][i] == '|':
       break
     visited[y][i] = True
 
-def vertical(x, y, maxY):
+def vertical(x, y):
   for i in range(y,maxY):
     if tiles[i][x] == '-':
       break
@@ -22,8 +22,8 @@ for i in range(maxX):
     if not visited[j][i]:
       answer += 1
       if tiles[j][i] == '-':
-        horizontal(i,j,maxX)
+        horizontal(i,j)
       else:
-        vertical(i,j,maxY)
+        vertical(i,j)
 
 print(answer)
