@@ -5,15 +5,17 @@
 
 using namespace std;
 
+const int MAX = 51;
 int n, m;
-char graph[201][201];
-int visited[201][201];
+char graph[MAX][MAX];
+bool visited[MAX][MAX];
 
 int main()
 {
+    cin.tie();
     int count = 0;
-
     cin >> n >> m;
+
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
             cin >> graph[i][j];
@@ -23,19 +25,17 @@ int main()
         for (int j = 0; j < m; j++)
         {
             // 이미 방문했던 곳이라면 무시
-            if(visited[i][j] == 1) continue;
+            if(visited[i][j] == true) continue;
             count++;
-            visited[i][j] = 1; // 방문 표시
+            visited[i][j] = true; // 방문 표시
 
-            // 현재 모양을 저장
-            char shape = graph[i][j];
-            if(shape == '-')
+            if(graph[i][j] == '-')
             {
                 // - 의 경우 '|'가 나올떄까지 열을 돌며 방문 표시
                 for(int k = j+1; k < m; k++)
                 {
-                    if(graph[i][j] == '|') break;
-                    visited[i][j] = 1;
+                    if(graph[i][k] == '|') break;
+                    visited[i][k] = true;
                 }
             }
             else
@@ -43,13 +43,12 @@ int main()
                 // |의 경우 - 가 나올때까지 행을 돌며 방문 표시
                 for(int k = i + 1; k < n; k++)
                 {
-                    if(graph[i][j] == '-') break;
-                    visited[i][j] = 1;
+                    if(graph[k][j] == '-') break;
+                    visited[k][j] = 1;
                 }
             }
         }
     }
 
     cout << count << '\n';
-    return 0;
 }
