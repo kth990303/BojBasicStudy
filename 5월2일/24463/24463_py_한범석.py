@@ -1,7 +1,26 @@
-# 시간 초과
+# 시간 초과......
 
 import sys
+
+sys.setrecursionlimit(4*1000000)
 input=sys.stdin.readline
+
+def dfs(pos):
+  if pos == endHole:
+    answer[pos[0]-1][pos[1]-1] = '.'
+    return True
+  
+  flag = False
+  y,x = pos
+
+  for i in range(4):
+    if miro[y+ny[i]][x+nx[i]]=='.' and not visited[y+ny[i]-1][x+nx[i]-1]:
+      visited[y+ny[i]-1][x+nx[i]-1] = True
+      flag = flag or dfs([y+ny[i],x+nx[i]])
+
+  if flag:
+    answer[pos[0]-1][pos[1]-1] = '.'
+  return flag
 
 def findHole():
   holes=[]
@@ -36,23 +55,8 @@ for i in range(N):
 miro+=[[0 for i in range(M+2)]]
 
 startHole, endHole = findHole()
-
 visited[startHole[0]-1][startHole[1]-1] = True
-stack = [[startHole,[startHole]]]
-while stack:
-  pos, path = stack.pop()
-  if pos == endHole:
-    for y,x in path:
-      answer[y-1][x-1] = '.'
-    break
-  y,x = pos
-  temp = []
-  for i in range(4):
-    if miro[y+ny[i]][x+nx[i]]=='.' and not visited[y+ny[i]-1][x+nx[i]-1]:
-      visited[y+ny[i]-1][x+nx[i]-1] = True
-      newPath = path[:]
-      newPath.append([y+ny[i],x+nx[i]])
-      stack.append([[y+ny[i],x+nx[i]],newPath])
+dfs(startHole)
 
 for row in answer:
   for col in row:
