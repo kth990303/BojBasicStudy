@@ -6,9 +6,10 @@
 
 using namespace std;
 
+const int MAX = 5001;
 int N;
-vector<pair<int, int>> line[5001];
-int check[5001];
+vector<pair<int, int>> line[MAX];
+int check[MAX];
 long long int max_cost;
 
 void dfs(int start, long long int cost) {
@@ -34,5 +35,5 @@ int main() {
         line[y].push_back({ x,cost });
     }
     dfs(1,0);
-    return 0;
+    cout << max_cost << '\n';
 }
