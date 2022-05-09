@@ -11,7 +11,8 @@ int main(void)
     cin.tie(0);
     cout.tie(0);
     int N, M;
-    char maze[2001][2001];
+    const int MAX = 2001;
+    char maze[MAX][MAX];
     vector<XY> hole;
     cin >> N >> M;
     for (int i = 0; i < N; i++)
@@ -24,7 +25,7 @@ int main(void)
 
     //돌아오는 길이 존재x 즉 회로x -> 트리 -> 각 노드에 부모정보만 저장한 뒤 거슬러 올라가서 루트까지 경로 찾기
     //첫번째 hole에서부터 maze배열에 대고 4방향 확인하며 DFS/BFS로 그래프(트리) 입력
-    XY parent[2001][2001];
+    XY parent[MAX][MAX];
     queue<XY> Q;
     Q.push(hole[0]);
     while (!Q.empty())
