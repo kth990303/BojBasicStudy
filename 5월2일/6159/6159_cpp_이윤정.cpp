@@ -19,7 +19,7 @@ int main(void)
         if (cowSizes[i] + cowSizes[j] <= S)
         {
             count += j - i;
-            j = N - 1;
+            //j = N - 1; //i가 뒤로 가서 더 커졌으니까 이전에 충족 안되던 j가 충족될 리가x j는 계속 작아지기만 
             i++;
         }
         else j--;
