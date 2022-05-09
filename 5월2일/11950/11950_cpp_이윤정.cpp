@@ -4,7 +4,7 @@ using namespace std;
 
 int main(void)
 {
-    std::ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
     int N, M, board[51][3] = { 0 }; //행별 W, B, R 누적합 저장
