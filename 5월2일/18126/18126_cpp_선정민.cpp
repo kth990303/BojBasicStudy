@@ -18,7 +18,7 @@ void dfs(int start, long long int cost) {
     for (int i = 0; i < line[start].size(); i++) {
         int x = line[start][i].first;
         if (check[x] == 0) {
-            check[x] = 1;
+            // check[x] = 1;
             dfs(x, cost + line[start][i].second);
         }
     }
