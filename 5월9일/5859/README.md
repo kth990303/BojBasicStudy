@@ -1,4 +1,4 @@
-## 5859. 
+## 5859. 거짓말쟁이
 https://www.acmicpc.net/problem/5859
 
 code by
