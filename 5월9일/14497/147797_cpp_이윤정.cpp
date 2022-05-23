@@ -1,5 +1,5 @@
 //14497 주난의 난
-//메모리초과...?
+//메모리초과... -> visited 관리 안해서 q에 계속 들어감
 #include <iostream>
 #include <queue>
 #include <utility>
@@ -8,10 +8,15 @@ typedef pair<int, int> XY;
 
 char cell[301][301];
 int ways[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-queue<XY> Q;
 
-int BFS(int N, int M)
+int BFS(int N, int M, XY Junan)
 {
+    queue<XY> Q;
+    bool visited[301][301] = { 0, }; //방문여부를 각 점프별로 관리해야 함
+    //이전 점프의 방문여부가 다음 점프에 영향을 주면 안되기 때문에
+    //cell에 직접 기록 시 문제 발생
+
+    Q.push(Junan);
     while (!Q.empty())
     {
         XY now = Q.front();
@@ -20,8 +25,9 @@ int BFS(int N, int M)
         {
             int x = now.first + ways[i][0];
             int y = now.second + ways[i][1];
-            if (1 <= x && x <= N && 1 <= y && y <= M)
+            if (1 <= x && x <= N && 1 <= y && y <= M && !visited[x][y])
             {
+                visited[x][y] = true;
                 switch (cell[x][y])
                 {
                 case '1':
@@ -31,11 +37,13 @@ int BFS(int N, int M)
                     Q.push(make_pair(x, y));
                     break;
                 case '#':
+                    cell[x][y] = 'x';
                     return true;
                 }
             }
         }
     }
+
     return false;
 }
 
@@ -54,8 +62,7 @@ int main(void)
     bool founded = false;
     while (!founded)
     {
-        Q.push(make_pair(x1, y1));
-        founded = BFS(N, M);
+        founded = BFS(N, M, make_pair(x1,y1));
         count++;
         /*cout << endl;
         for (int i = 1; i <= N; i++)
@@ -65,6 +72,5 @@ int main(void)
             cout << endl;
         }*/
     }
-    if (count != 1) count++;
     cout << count;
 }
