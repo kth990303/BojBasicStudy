@@ -1,4 +1,4 @@
-## 14575. 거짓말쟁이
+## 14575. 
 https://www.acmicpc.net/problem/14575
 
 code by
